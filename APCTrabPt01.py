@@ -3,10 +3,31 @@
 import plotly.graph_objects as go
 import pandas as pd
 
+# GRÁFICO DE BARRAS:
+# Lendo a pase de dados:
+dados_barra = pd.read_csv("TrabalhoParte01\EmissoesTotaisSetoresBrasil001.csv")
+dados_barra_array = dados_barra.values
+
+ano_barra = []
+emissao_barra = []
+for i in dados_barra_array:
+    ano_barra.append(i[0])
+    emissao_barra.append(i[1])
+
+barra = go.Bar(
+    x = ano_barra,
+    y = emissao_barra
+)
+
+graf_barra = go.Figure(barra)
+graf_barra.show()
+
+
+# GRÁFICO PARALLEL COORDINATES:
 # Lendo a base de dados:
-df = pd.read_csv("TrabalhoParte01\co2-emissions-by-fuel-line_1.csv")
+dados_paralel = pd.read_csv("TrabalhoParte01\co2-emissions-by-fuel-line_1.csv")
 # Transformando a base em um array para ser devidamente manipulado:
-dados_array = df.values
+dados_paralel_array = dados_paralel.values
 
 # Usei isso aqui pra definir a escala dos eixos do gráfico:
 # print(max(df['CO2 emissions from cement']))  
@@ -19,7 +40,7 @@ oleo = []
 queimada = []
 cement = []
 # Faltam as outras colunas.
-for linha in dados_array:
+for linha in dados_paralel_array:
     paises.append(linha[0])
     oleo.append(linha[3])
     queimada.append(linha[4])
@@ -37,7 +58,7 @@ for elemento in range(len(paises)//270):
 
 
 # Plotando o gráfico:
-fig = go.Parcoords(
+paralel = go.Parcoords(
         line=dict(color = cores, showscale = True),  # 'color' vai receber uma lista e distribuir à cada variável
                                                         # que aparecer no gráfico uma cor. O 'showscale' mostra
                                                         # a escala de cores conforme os valores numéricos (barra direita na figura);
@@ -54,6 +75,6 @@ fig = go.Parcoords(
         ]))
 
 # Criando a imagem do gráfico plotado:
-graf = go.Figure(fig)
+graf_paralel = go.Figure(paralel)
 # Mostrando a imagem:
-graf.show()
+graf_paralel.show()
