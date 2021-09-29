@@ -18,7 +18,7 @@ Pi = []
 Agricultura = []
 Solo = []
 
-impdata = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/co2_setores-_variacao.csv')
+impdata = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/co2_variacao_setores.csv')
 
 dados = impdata.values 
 
