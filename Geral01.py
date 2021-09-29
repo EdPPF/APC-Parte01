@@ -1,16 +1,18 @@
 import plotly.graph_objects as go
 import pandas as pd
-
-# GRÁFICO COORDENADAS PARALELAS:
     
 # Lendo as bases de dados:
 dados_paralel = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/ghg-emissions%201.1.csv')
 dados_pizza = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/co2-emissions-by-fuel-line_1.csv')
+dados_linhabarra = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/DataFrame_Concentra%C3%A7%C3%A3o_CO2')
+dados_linha = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/co2_variacao_setores.csv')
 
 # Transformando a base em uma lista de valores.
     # "values() is an inbuilt method in Python that returns a list of all the values available in a given dictionary"
 dados_paralel_array = dados_paralel.values
 dados_pizza_array = dados_pizza.values
+dados_linhabarra_array = dados_linhabarra.values
+dados_linha_array = dados_linha.values 
 
 
 # ----------COORDENADAS PARALELAS----------
@@ -117,5 +119,77 @@ graf_pizza.update_layout(
     title_text='Emissões de CO2 em Setores de Combustíveis <br><sup>Valores referentes a Ásia, América, Europa e Brasil, China, EUA e Alemanha (1990-2018)</sup>',
     template = 'plotly_dark')
 
+
+
+# ----------LINHA/BARRA----------
+anos = []
+ppm = []
+for x in dados_linhabarra_array:
+    anos.append(x[0])
+    ppm.append(x[1])
+
+linhabarra = go.Figure(data=[
+    go.Scatter(
+        x = anos, 
+        y = ppm, 
+        name = 'Linha',
+        marker_color='#FAD41B',
+        
+    ),
+    go.Bar(
+        x = anos, 
+        y = ppm, 
+        name = 'Barra',
+        marker_color = '#76777B',
+    )   
+])
+
+linhabarra.update_layout(
+    title = 'Concentração de CO2 na Atmosfera',
+    template = 'plotly_dark',
+    yaxis = dict(
+        title = 'PMM (partes por milhão)',
+    ),
+    xaxis = dict(
+        title = 'Anos',
+    )
+)
+
+# ----------LINHA----------
+Ano = []
+Energia = []
+Pi = []
+Agricultura = []
+Solo = []
+for i in dados_linha_array:
+    Ano.append(i[0])
+    Energia.append(i[1])
+    Pi.append(i[2])
+    Agricultura.append(i[3])
+    Solo.append(i[4])
+
+trace1 = go.Scatter(x=Ano, y= Energia, mode = 'lines+markers', name = 'Energia')
+trace2 = go.Scatter(x = Ano, y = Pi, mode = 'lines+markers', name = 'Processos Industriais')
+trace3 = go.Scatter(x = Ano, y = Agricultura,mode = 'lines+markers', name = 'Agricultura')
+trace4 = go.Scatter(x = Ano, y = Solo, mode = 'lines+markers', name = 'Solo e Silvicultura')
+
+data = [trace1,trace2,trace3,trace4]
+
+layout=go.Layout(
+    hovermode="x",
+    title='VARIAÇÃO DA EMISSÃO DE CO2 POR SETORES - BRASIL', 
+    xaxis_title='Anos', 
+    yaxis_title='Variação (%)',
+    font = {'family': 'Arial','size': 16}
+    )
+graflinha = go.Figure(data=data, layout=layout)
+
+graflinha.update_layout(
+    template = 'plotly_dark'
+)
+
+
 graf_pizza.show()
 graf_paralel.show()
+linhabarra.show()
+graflinha.show()
