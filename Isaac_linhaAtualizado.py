@@ -28,11 +28,8 @@ imagem = go.Figure(go.Scatter(x=ano,
                               mode='lines',
                               text=pais))
 
-#Acrescentando algumas características ao gráfico
-#Permite a manipulação das características do gráfico
- #Title representa o "Nome principal" Do gráfico
- #Template altera o tema de fundo do gráfico
-#Xaxis e Yaxis acrescentam, respectivamente, o nome do eixo x e o y do gráfico
+#Comando que permite a manipulação das características do gráfico
+ 
 graf_linha = go.Figure(imagem)
 graf_linha.update_layout(
     title_text='Emissão de CO2: Alemanha, America do sul, Asia, Brasil, China, Europa, EUA',
@@ -43,4 +40,9 @@ graf_linha.update_layout(
         title = 'Concentração de CO2'
     )
 )  
+#Title representa o "Nome principal" Do gráfico
+#Template altera o tema de fundo do gráfico
+#Xaxis e Yaxis acrescentam, respectivamente, o nome do eixo x e o y do gráfico
+
+#Executa o gráfico
 graf_linha.show()
