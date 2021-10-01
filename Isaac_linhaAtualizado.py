@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 
-df = pd.read_csv('/content/annual-co2-emissions-per-country(3) - annual-co2-emissions-per-country(3).csv', sep=',')
+df = pd.read_csv('/content/annual-co2-emissions-per-country(3) - annual-co2-emissions-per-country(3) (1).csv', sep=',')
 
 #Transformando a lista em array
 df_array = df.values
@@ -32,7 +32,7 @@ for i in df_array:
 #Criação e edição do gráfico / Eixo x
 #Definindo qual valor será representado no eixo Y.
 #mode define o tipo de linha que o gráfico terá. 
-#name define o padrão que as linhas armazenará, e nesse caso será o nome de cada país.
+#text define o padrão que as linhas armazenará, e nesse caso será o nome dos países.
 linha1 = go.Scatter(x=ano, y= asia, mode = 'lines', name = 'Asia')
 linha2 = go.Scatter(x = ano, y = brasil, mode = 'lines', name = 'Brasil')
 linha3 = go.Scatter(x = ano, y = china, mode = 'lines', name = 'China')
@@ -42,10 +42,9 @@ linha6 = go.Scatter(x = ano, y = americsul, mode = 'lines', name = 'South Americ
 linha7 = go.Scatter(x = ano, y = usa, mode = 'lines', name = 'United States')
 linha8 = go.Scatter(x = ano, y = world, mode = 'lines', name = 'World')
 
-#Definindo as listas como imagem para facilitar na manipulação
 imagem = [linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8]
-
-#Comando que permite a manipulação das características do gráfico 
+#Comando que permite a manipulação das características do gráfico
+ 
 graf_linha = go.Figure(imagem)
 graf_linha.update_layout(
     title_text='Emissão de CO2: Alemanha, America do sul, Asia, Brasil, China, Europa, EUA',
