@@ -4,18 +4,20 @@ import pandas as pd
 # Lendo as bases de dados:
 dados_paralel = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/ghg-emissions%201.1.csv')
 dados_pizza = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/co2-emissions-by-fuel-line_1.csv')
-dados_linhabarra = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/DataFrame_Concentra%C3%A7%C3%A3o_CO2')
+dados_barra = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/Dados.csv')
 dados_linha = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/co2_variacao_setores.csv')
+dados_linha2 = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/annual-co2-emissions-per-country(4).csv')
 
 # Transformando a base em uma lista de valores.
     # "values() is an inbuilt method in Python that returns a list of all the values available in a given dictionary"
 dados_paralel_array = dados_paralel.values
 dados_pizza_array = dados_pizza.values
-dados_linhabarra_array = dados_linhabarra.values
-dados_linha_array = dados_linha.values 
+dados_barra_array = dados_barra.values
+dados_linha_array = dados_linha.values
+dados_linha2_array = dados_linha2.values
 
 
-# ----------COORDENADAS PARALELAS----------
+# ----------(EDUARDO)COORDENADAS PARALELAS----------
 # Cada linha do gráfico é um ano, de 1990 até 2018, do Brasil. Cada coluna refere-se a valores da emissão de
     # CO2 do Brasil nesse setor e ano específicos. 
 # Transformando a base de dados em listas separadas-
@@ -58,7 +60,8 @@ graf_paralel.update_layout(
     title_text='Emissões de Setores Específicos no Brasil (1990-2018)',
     template = 'plotly_dark')
 
-# ----------PIZZA----------
+
+# ----------(FAUSE)PIZZA----------
 # Transformando a base de dados em listas separadas-
 paises = []
 anos = []
@@ -120,11 +123,10 @@ graf_pizza.update_layout(
     template = 'plotly_dark')
 
 
-
-# ----------LINHA/BARRA----------
-anos = []
+# ----------(LEANDRO/MAYKON)LINHA/BARRA----------
+'''anos = []
 ppm = []
-for x in dados_linhabarra_array:
+for x in dados_barra_array:
     anos.append(x[0])
     ppm.append(x[1])
 
@@ -153,9 +155,43 @@ linhabarra.update_layout(
     xaxis = dict(
         title = 'Anos',
     )
+)'''
+
+year = []
+mundo = []
+brasil = []
+for linha in dados_barra_array:
+    year.append(linha[0])
+    mundo.append(linha[1])
+    brasil.append(linha[2])
+
+graf_barra = go.Figure()
+graf_barra.add_trace(go.Bar(x= year, y= mundo, name='Mundo'))
+graf_barra.add_trace(go.Bar(x= year, y= brasil, name='Brasil'))
+
+# Personalização do gráfico de barras
+graf_barra.update_layout(
+    title='Concentração de CO2 na Atmosfera, Brasil/Mundo (1991-2018)',
+    xaxis_tickfont_size=14,
+    yaxis=dict(
+        title='(Toneladas Métricas Per Capita)',
+        titlefont_size=16,
+        tickfont_size=14,
+    ),
+    legend=dict(
+        x=0,
+        y=1.0,
+        bgcolor='rgba(255, 255, 255, 0)',
+        bordercolor='rgba(255, 255, 255, 0)'
+    ),
+    barmode='group',
+    bargap=0.15, 
+    bargroupgap=0.1,
+    template = 'plotly_dark'
 )
 
-# ----------LINHA----------
+
+# ----------(FELIPE)LINHA----------
 Ano = []
 Energia = []
 Pi = []
@@ -189,7 +225,53 @@ graflinha.update_layout(
 )
 
 
-graf_pizza.show()
+# ----------(ISAAC)LINHA----------
+ano = []
+asia = []
+brasil = []
+china = []
+europa = []
+alemanha = []
+americsul = []
+usa = []
+world = []
+for i in dados_linha2_array:
+    ano.append(i[0])
+    asia.append(i[1])
+    brasil.append(i[2])
+    china.append(i[3])
+    europa.append(i[4])
+    alemanha.append(i[5])
+    americsul.append(i[6])
+    usa.append(i[7])
+    world.append(i[8])
+
+linha1 = go.Scatter(x=ano, y= asia, mode = 'lines', name = 'Asia')
+linha2 = go.Scatter(x = ano, y = brasil, mode = 'lines', name = 'Brasil')
+linha3 = go.Scatter(x = ano, y = china, mode = 'lines', name = 'China')
+linha4 = go.Scatter(x = ano, y = europa, mode = 'lines', name = 'Europa')
+linha5 = go.Scatter(x=ano, y= alemanha, mode = 'lines', name = 'Alemanha')
+linha6 = go.Scatter(x = ano, y = americsul, mode = 'lines', name = 'America do Sul')
+linha7 = go.Scatter(x = ano, y = usa, mode = 'lines', name = 'Estados Unidos')
+linha8 = go.Scatter(x = ano, y = world, mode = 'lines', name = 'Mundo')
+
+imagem = [linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8]
+
+graflinha2 = go.Figure(imagem)
+
+graflinha2.update_layout(
+    title_text='Emissão de CO2: Alemanha, America do sul, Asia, Brasil, China, Europa, EUA',
+    template = 'plotly_dark',
+    xaxis = dict(
+        title = "Anos"),
+    yaxis = dict(
+        title = 'Concentração de CO2'
+    )
+)  
+
+
 graf_paralel.show()
-linhabarra.show()
+graf_pizza.show()
+graf_barra.show()
 graflinha.show()
+graflinha2.show()
