@@ -9,7 +9,6 @@ dados_linha = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/m
 dados_linha2 = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/annual-co2-emissions-per-country(4).csv')
 
 # Transformando a base em uma lista de valores.
-    # "values() is an inbuilt method in Python that returns a list of all the values available in a given dictionary"
 dados_paralel_array = dados_paralel.values
 dados_pizza_array = dados_pizza.values
 dados_barra_array = dados_barra.values
@@ -17,9 +16,7 @@ dados_linha_array = dados_linha.values
 dados_linha2_array = dados_linha2.values
 
 
-# ----------(EDUARDO)COORDENADAS PARALELAS----------
-# Cada linha do gráfico é um ano, de 1990 até 2018, do Brasil. Cada coluna refere-se a valores da emissão de
-    # CO2 do Brasil nesse setor e ano específicos. 
+# ----------COORDENADAS PARALELAS----------
 # Transformando a base de dados em listas separadas-
 ano = []
 industria = []
@@ -33,18 +30,15 @@ for elemento in dados_paralel_array:
     construcao.append(elemento[3])
     transporte.append(elemento[4])
 
-# A lista "ano" será usada para determinar as cores de cada linha no gráfico. Isso é válido pois essa lista contém
-    # apenas valores numéricos.
 # Plotando o gráfico:
-    # Unidade das variáveis: Mt = Megaton = Um milhão de toneladas
 paralel = go.Parcoords(
-        line=dict(color = ano,  # 'color' vai receber uma lista e distribuir à cada linha que aparecer no gráfico uma cor;
-        colorscale='turbo',  # 'colorscale' define a escala das cores (as cores de fato);
-        colorbar=dict(title='Ano'),  # 'colorbar' recebe um dict() para definir algumas propriedades da escala (no caso, o título);
-        showscale = True),  # 'showscale' mostra a escala de cores conforme os valores numéricos (barra direita na figura);
+        line=dict(color = ano,
+        colorscale='turbo',
+        colorbar=dict(title='Ano'),
+        showscale = True),
         dimensions = list([
-            dict(range = [min(industria), max(industria)],  # 'range' define de onde até onde vão os valores dessa variável específica;
-            label = 'Processos Industriais (Mt)', values = industria),  # Nome do eixo dessa variável e quais dados da bse de dados aparecerão aqui;
+            dict(range = [min(industria), max(industria)],
+            label = 'Processos Industriais (Mt)', values = industria),
             dict(range = [min(calor_eletrici), max(calor_eletrici)],
             label = 'Calor e Eletricidade (Mt)', values = calor_eletrici),
             dict(range = [min(construcao), max(construcao)],
@@ -61,8 +55,7 @@ graf_paralel.update_layout(
     template = 'plotly_dark')
 
 
-# ----------(FAUSE)PIZZA----------
-# Transformando a base de dados em listas separadas-
+# ----------PIZZA----------
 paises = []
 anos = []
 oleo = []
@@ -123,40 +116,7 @@ graf_pizza.update_layout(
     template = 'plotly_dark')
 
 
-# ----------(LEANDRO/MAYKON)LINHA/BARRA----------
-'''anos = []
-ppm = []
-for x in dados_barra_array:
-    anos.append(x[0])
-    ppm.append(x[1])
-
-linhabarra = go.Figure(data=[
-    go.Scatter(
-        x = anos, 
-        y = ppm, 
-        name = 'Linha',
-        marker_color='#FAD41B',
-        
-    ),
-    go.Bar(
-        x = anos, 
-        y = ppm, 
-        name = 'Barra',
-        marker_color = '#76777B',
-    )   
-])
-
-linhabarra.update_layout(
-    title = 'Concentração de CO2 na Atmosfera',
-    template = 'plotly_dark',
-    yaxis = dict(
-        title = 'PMM (partes por milhão)',
-    ),
-    xaxis = dict(
-        title = 'Anos',
-    )
-)'''
-
+# ----------LINHA/BARRA----------
 year = []
 mundo = []
 brasil = []
@@ -191,7 +151,7 @@ graf_barra.update_layout(
 )
 
 
-# ----------(FELIPE)LINHA----------
+# ----------LINHA----------
 Ano = []
 Energia = []
 Pi = []
@@ -225,7 +185,7 @@ graflinha.update_layout(
 )
 
 
-# ----------(ISAAC)LINHA----------
+# ----------LINHA----------
 ano = []
 asia = []
 brasil = []
