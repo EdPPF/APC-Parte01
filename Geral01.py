@@ -93,8 +93,8 @@ Values = []
 for lista in listas_sub:
     soma = 0
     soma = sum(lista)
-    Values.append(int(soma)/232)
-
+    Values.append(int((soma)/(len(lista))))
+   
 labels = ['Gasolina' , 'Carvão',  'Cimento' ,'Queimadas', 'Óleo']
 colors = ['gold', 'Crimson', 'LightSlateGray', 'Black', 'Chartreuse']
 
