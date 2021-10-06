@@ -76,13 +76,13 @@ for elemento in dados_pizza_array:
 # Filtrando os dados para o gráfico de pizza:
 listas = [paises, anos, oleo, queimada, cement, carvao, gas]
 for lista in listas:
-    del lista[:510]  # - Africa, 1990
-    del lista[29:2700]  # Africa, 2018 - Asia, 1990
-    del lista[58:15419]  # Asia, 2018 - Europe, 1990
-    del lista[87:22468]  # Europe, 2018 - North America, 1990
-    del lista[116:1437]  # North America, 2018 - Oceania, 1990
-    del lista[145:10106]  # Oceania, 2018 - South America, 1990
-    del lista[174:]  # South America, 2018 -
+    del lista[:510]  
+    del lista[29:2700] 
+    del lista[58:15419]  
+    del lista[87:22468] 
+    del lista[116:1437]  
+    del lista[145:10106] 
+    del lista[174:]  
 
 # Criando outra lista de listas para trabalhar com elas individualmente:
 listas_sub = [gas, carvao, cement, queimada, oleo]
