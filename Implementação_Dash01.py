@@ -251,12 +251,14 @@ markdown_pizza = '''
             - Base de dados disponível em [co2-emissions-by-fuel-line_1 (2).csv](https://github.com/EdPPF/APC-Parte01/blob/main/co2-emissions-by-fuel-line_1%20(2).csv).
             '''
 submarkdown_pizza = '''
-            A base de dados para este gráfico é extensa, contendo dados referentes aos anos de 1750 até 2019, além de a vários 
-            países e regiões do mundo.  
-            Dessa forma, os dados foram filtrados para apresentar apenas valores Referentes a Africa, Ásia, Europa, Oceania, 
-            América do Norte e América do Sul.  
-            Com esses dados, foi feita a média das emissões para cada setor presente no gráfico, de maneira a permitir
-            uma rápida comparação de valores.
+            A base de dados para este gráfico é extensa, contendo dados referentes aos anos de 1750 até 2019,  
+             além de a vários países e regiões do mundo.  
+            Dessa forma, os dados foram filtrados para apresentar apenas valores Referentes a  Africa, Ásia,  
+             Europa, Oceania, América do Norte e América do Sul.  
+            Com esses dados, foi feita a média das emissões para cada setor presente no gráfico, de maneira  
+             a permitir uma rápida comparação de valores.  
+            Abaixo podem ser conferidos os dados referentes a cada país:  
+            ...ou será que podem?
             '''
 
 markdown_linha2 = '''
@@ -290,11 +292,11 @@ app.layout = html.Div([
         html.H1(
             children='Avaliação das Emissões e Concentrações de CO2',
             style={'color':'#2acaea','font-size':'30px', 'text-align':'center'}
-            ),
+        ),
         dcc.Markdown(
             children=markdown_H1,
             style={'font-size':'15px', 'text-align':'center'}
-            ),
+        ),
     ]),
 
     html.Br(),
@@ -307,26 +309,40 @@ app.layout = html.Div([
         dcc.Markdown(
             children=markdown_paralel,
             style={'font-size':'15px'}
-            ),
+        ),
         dcc.Graph(figure=graf_paralel)
     ]),
 
     html.Br(),
 
     html.Div([
-        html.H2(
-            children='Emissões de CO2 em Setores de Combustíveis (1990-2018)',
-            style={'color':'#1cf5db', 'font-size':'25px'}
-        ),
-        dcc.Markdown(
-            children=markdown_pizza,
-            style={'font-size':'15px'}
+        html.Div([  # Bloco para o título e o primeiro markdown.
+            html.H2(
+                children='Emissões de CO2 em Setores de Combustíveis (1990-2018)',
+                style={'color':'#1cf5db', 'font-size':'25px'}
             ),
-        dcc.Graph(figure=graf_pizza),
-        dcc.Markdown(
-            children=submarkdown_pizza,
-            style={'font-size':'15px'}
-        )
+            dcc.Markdown(
+                children=markdown_pizza,
+                style={'font-size':'15px'}
+            ),
+        ]),
+
+        html.Div([  # Bloco para o gráfico. Está separado pois é necessário adicionar 'display' em style.
+            dcc.Graph(
+                figure=graf_pizza
+            ),
+        ],
+            style={'display': 'inline-block'}
+        ),
+
+        html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
+            dcc.Markdown(
+                children=submarkdown_pizza,
+                style={'font-size':'15px'}
+            )
+        ],
+            style={'display': 'inline-block', 'margin': '20px', 'vertical-align': 'top'}
+        ),
     ]),
 
     html.Br(),
@@ -339,7 +355,7 @@ app.layout = html.Div([
         dcc.Markdown(
             children=markdown_linha2,
             style={'font-size':'15px'}
-            ),
+        ),
         dcc.Graph(figure=graflinha2)
     ]),
 
@@ -353,7 +369,7 @@ app.layout = html.Div([
         dcc.Markdown(
             children=markdown_barra,
             style={'font-size':'15px'}
-            ),
+        ),
         dcc.Graph(figure=graf_barra)
     ]),
 
@@ -367,7 +383,7 @@ app.layout = html.Div([
         dcc.Markdown(
             children=markdown_linha,
             style={'font-size':'15px'}
-            ),
+        ),
         dcc.Graph(figure=graflinha)
     ]),
 
