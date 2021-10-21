@@ -54,8 +54,8 @@ paralel = go.Parcoords(
 graf_paralel = go.Figure(paralel)
 # Modificando o lyout geral do gráfico (cor de fundo):
 graf_paralel.update_layout(
-    template = 'plotly_dark'
-    )
+    #title_text = 'Emissões de Setores Específicos no Brasil (1990-2018)',
+    template = 'plotly_dark')
 
 
 # ----------PIZZA----------
@@ -115,6 +115,7 @@ graf_pizza.update_traces(
     )
 
 graf_pizza.update_layout(
+    #title_text = 'Emissões de CO2 em Setores de Combustíveis <br><sup>Valores Referentes a Africa, Ásia, Europa, Oceania, América do Norte e América do Sul (1990-2018)</sup>',
     title_font_size = 30,
     template = 'plotly_dark'
     )
@@ -134,6 +135,7 @@ graf_barra.add_trace(go.Bar(x = year, y = brasil, name = 'Brasil'))
 
 # Personalização do gráfico de barras
 graf_barra.update_layout(
+    #title = 'Concentração de CO2 na Atmosfera: Brasil/Mundo (1991-2018)',
     xaxis_tickfont_size = 14,
     yaxis = dict(
         title = '(Toneladas Métricas Per Capita)',
@@ -169,6 +171,7 @@ data = [trace1,trace2,trace3,trace4]
 
 layout = go.Layout(
     hovermode = "x",
+    #title = 'Variação da Emissão de CO2 em Setores (Brasil, 1990-2018)', 
     xaxis_title = 'Anos', 
     yaxis_title = 'Variação (%)',
     font = {'family': 'Arial','size': 16}
@@ -215,12 +218,86 @@ imagem = [linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8]
 graflinha2 = go.Figure(imagem)
 
 graflinha2.update_layout(
+    #title_text = 'Concentração de CO2: Alemanha, America do sul, Asia, Brasil, China, Europa, EUA (1990-2018)',
     template = 'plotly_dark',
     xaxis = dict(title = "Anos"),
     yaxis = dict(title = 'Concentração de CO2')
 )  
 
 
+'''graf_paralel.show()
+graf_pizza.show()
+graflinha2.show()
+graf_barra.show()
+graflinha.show()'''
+
+# Aqui começa a implementação dos gráficos em dash:
+
+# Separando os dados já filtrados do gráfico de Pizza para que cada país tenha suas próprias listas de cada setor:
+
+proc = [oleo, queimada, cement, carvao, gas]
+
+oleoAf = []
+oleoAs = []
+oleoEuro = []
+oleoNA = []
+oleoOc = []
+oleoSA = []
+espoleo = [oleoAf, oleoAs, oleoEuro, oleoNA, oleoOc, oleoSA]
+for lista in espoleo:
+    for num in oleo[0:29]:
+        lista.append(num)
+    del oleo[0:29]
+
+queimadaAf = []
+queimadaAs = []
+queimadaEuro = []
+queimadaNA = []
+queimadaOc = []
+queimadaSA = []
+espqueimada = [queimadaAf, queimadaAs, queimadaEuro, queimadaNA, queimadaOc, queimadaSA]
+for lista in espqueimada:
+    for num in queimada[0:29]:
+        lista.append(num)
+    del queimada[0:29]
+
+cementAf = []
+cementAs = []
+cementEuro = []
+cementNA = []
+cementOc = []
+cementSA = []
+espcement = [cementAf, cementAs, cementEuro, cementNA, cementOc, cementSA]
+for lista in espcement:
+    for num in cement[0:29]:
+        lista.append(num)
+    del cement[0:29]
+
+carvaoAf = []
+carvaoAs = []
+carvaoEuro = []
+carvaoNA = []
+carvaoOc = []
+carvaoSA = []
+espcarvao = [carvaoAf, carvaoAs, carvaoEuro, carvaoNA, carvaoOc, carvaoSA]
+for lista in espcarvao:
+    for num in carvao[0:29]:
+        lista.append(num)
+    del carvao[0:29]
+
+gasAf = []
+gasAs = []
+gasEuro = []
+gasNA = []
+gasOc = []
+gasSA = []
+espgas = [gasAf, gasAs, gasEuro, gasNA, gasOc, gasSA]
+for lista in espgas:
+    for num in gas[0:29]:
+        lista.append(num)
+    del gas[0:29]
+
+# Utilizando o dash de fato:
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -343,6 +420,21 @@ app.layout = html.Div([
         ],
             style={'display': 'inline-block', 'margin': '20px', 'vertical-align': 'top'}
         ),
+
+        html.Div([  # Bloco para o dropdown, Gráfico extra e texto desse gráfico.
+            dcc.Markdown(
+                children='INSERIR TEXTO AQUI????',
+                style={'font-size':'15px'}
+            ),
+            dcc.Dropdown(
+                id='Processo',
+                #options=[{'label': ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'], 'value': [1, 2, 3, 4, 5]}],
+                options=[{'label': nome, 'value': num} for num, nome in zip([1,2,3,4,5], ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'])],
+                value=1,
+                style={'color':'#ec5095'}
+            ),
+            dcc.Graph(id='linhaplus')
+        ])
     ]),
 
     html.Br(),
@@ -396,6 +488,72 @@ app.layout = html.Div([
         )
     ])
 ])
+
+# Aqui vem o callback:
+@app.callback(
+    dash.Output('linhaplus', 'figure'),
+    dash.Input('Processo', 'value')
+)
+# Definindo o processo de criação e alteração do gfráfico de acordo com as escolhas do drop-down:
+def update_graf_linhaplus(num):
+    # Essas listas serão repassadas como argumento para cada linha (setor) do gráfico.
+    argAf = []
+    argAs = []
+    argEuro = []
+    argNA = []
+    argOc = []
+    argSA = []
+    # As listas são preenchidas de acordo com a escolha do drop-down:
+    if num == 1:
+        argAf = oleoAf
+        argAs = oleoAs
+        argEuro = oleoEuro
+        argNA = oleoNA
+        argOc = oleoOc
+        argSA = oleoSA
+    elif num == 2:
+        argAf = queimadaAf
+        argAs = queimadaAs
+        argEuro = queimadaEuro
+        argNA = queimadaNA
+        argOc = queimadaOc
+        argSA = queimadaSA
+    elif num == 3:
+        argAf = cementAf
+        argAs = cementAs
+        argEuro = cementEuro
+        argNA = cementNA
+        argOc = cementOc
+        argSA = cementSA
+    elif num == 4:
+        argAf = carvaoAf
+        argAs = carvaoAs
+        argEuro = carvaoEuro
+        argNA = carvaoNA
+        argOc = carvaoOc
+        argSA = carvaoSA
+    elif num == 5:
+        argAf = gasAf
+        argAs = gasAs
+        argEuro = gasEuro
+        argNA = gasNA
+        argOc = gasOc
+        argSA = gasSA
+
+    linha1 = go.Scatter(x = anos, y = argAf, mode = 'lines', name = 'Africa')
+    linha2 = go.Scatter(x = anos, y = argAs, mode = 'lines', name = 'Asia')
+    linha3 = go.Scatter(x = anos, y = argEuro, mode = 'lines', name = 'Europa')
+    linha4 = go.Scatter(x = anos, y = argNA, mode = 'lines', name = 'América do Norte')
+    linha5 = go.Scatter(x = anos, y = argOc, mode = 'lines', name = 'Oceania')
+    linha6 = go.Scatter(x = anos, y = argSA, mode = 'lines', name = 'América do Sul')
+
+    imagem = [linha1, linha2, linha3, linha4, linha5, linha6]
+    graf = go.Figure(imagem)
+    graf.update_layout(
+        template = 'plotly_dark'
+    )
+
+    return graf
 
 if __name__ == '__main__':
     app.run_server(debug=True)
