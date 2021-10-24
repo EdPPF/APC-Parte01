@@ -318,8 +318,6 @@ from dash.dependencies import Input, Output
 
 css = ['https://bootswatch.com/4/darkly/bootstrap.css']
 
-
-
 markdown_H1 = '''
             O intuito desta página é analisar as emissões e concentrações de CO2 (gás carbônico) na atmosfera por meio de gráficos demonstrativos e comparativos. Os gráficos focam no período de tempo de 1990 a 2018 especialmente no Brasil, apesar de trazer dados referentes a outras regiões do mundo. Bases de dados e códigos disponíveis publicamente [neste repositório do GitHub](https://github.com/EdPPF/APC-Parte01).
             '''
@@ -395,8 +393,11 @@ app.layout = html.Div(children=[
         'background-color': '#3c4043',
         'padding': '10px 10px',
         'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
         'margin-top': '7px',
-        'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
+        
     } #Estilo DIV titulo
     ), 
 
@@ -448,8 +449,11 @@ app.layout = html.Div(children=[
         'background-color': '#3c4043',
         'padding': '10px 10px',
         'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
         'margin-top': '7px',
-        'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
+
     } #Estilo paralelo DIV
     ),
 
@@ -492,8 +496,8 @@ app.layout = html.Div(children=[
                         'margin': 'auto',
                     },
                     config={
-                    'displayModeBar': False
-                }
+                        'displayModeBar': False
+                    }
                 ),
             ],
                 style={}
@@ -517,12 +521,12 @@ app.layout = html.Div(children=[
                 'background-color': '#3c4043',
                 'padding': '10px 10px',
                 'border-radius': '10px',
+                'box-shadow': '0px 0px 5px #1C1C1C',
+                'width': '80%',
+                'margin': 'auto',
                 'margin-top': '7px',
-                'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
-
-            }),
-            
-
+            }
+        ),
             html.Div(children=[
             html.Div([  # Bloco para o dropdown, Gráfico extra e texto desse gráfico.
                 html.H1(
@@ -551,6 +555,7 @@ app.layout = html.Div(children=[
                         'background-color': '#616161',
                         'border': 'none',
                         'border-radius': '10px',
+
                     }
                 ),
                 dcc.Graph(id='linhaplus',
@@ -570,8 +575,10 @@ app.layout = html.Div(children=[
                 'background-color': '#3c4043',
                 'padding': '10px 10px',
                 'border-radius': '10px',
+                'box-shadow': '0px 0px 5px #1C1C1C',
+                'width': '80%',
+                'margin': 'auto',
                 'margin-top': '7px',
-                'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
             }
         ),
 
@@ -617,8 +624,10 @@ app.layout = html.Div(children=[
             'background-color': '#3c4043',
             'padding': '10px 10px',
             'border-radius': '10px',
+            'box-shadow': '0px 0px 5px #1C1C1C',
+            'width': '80%',
+            'margin': 'auto',
             'margin-top': '7px',
-            'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
         }
         ),
 
@@ -660,12 +669,14 @@ app.layout = html.Div(children=[
             )
         ],
         style={
-                'color': '#fff',
-                'background-color': '#3c4043',
-                'padding': '10px 10px',
-                'border-radius': '10px',
-                'margin-top': '7px',
-                'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
+            'color': '#fff',
+            'background-color': '#3c4043',
+            'padding': '10px 10px',
+            'border-radius': '10px',
+            'box-shadow': '0px 0px 5px #1C1C1C',
+            'width': '80%',
+            'margin': 'auto',
+            'margin-top': '7px',
         }
         ),
 
@@ -711,8 +722,10 @@ app.layout = html.Div(children=[
             'background-color': '#3c4043',
             'padding': '10px 10px',
             'border-radius': '10px',
+            'box-shadow': '0px 0px 5px #1C1C1C',
+            'width': '80%',
+            'margin': 'auto',
             'margin-top': '7px',
-            'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
         }
         ),
 
@@ -720,8 +733,8 @@ app.layout = html.Div(children=[
             dcc.Markdown(
                 children=markdown_creditos,
                 style={
-                    'font-size':'12px', 
-                    'color':'#ff6666', 
+                    'font-size':'15px', 
+                    'color':'#00bc8c', 
                     'text-align':'center',
                     'width' : '90%',
                     'margin': 'auto',
@@ -732,17 +745,17 @@ app.layout = html.Div(children=[
             'color': '#fff',
             'background-color': '#3c4043',
             'padding': '10px 10px',
-            'border-radius': '10px',
             'margin-top': '7px',
-            'box-shadow': '0px 0px 3px rgba(58, 58, 58, 0.192)',
+            'box-shadow': '0px 0px 5px #1C1C1C',
     }
         ),
-    ],
+],
 style={
-    'width': '80%',
+    'width': '100v%',
     'height': '100%',
     'margin': '0px', 
     'margin': 'auto',
+    'background-color': '#212121',
 }, #Estilo DIV main
 )
 
