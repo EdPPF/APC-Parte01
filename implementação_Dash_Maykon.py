@@ -41,14 +41,26 @@ paralel = go.Parcoords(
         colorbar = dict(title = 'Ano'),
         showscale = True),
         dimensions = list([
-            dict(range = [min(industria), max(industria)],
-            label = 'Processos Industriais (Mt)', values = industria),
-            dict(range = [min(calor_eletrici), max(calor_eletrici)],
-            label = 'Calor e Eletricidade (Mt)', values = calor_eletrici),
-            dict(range = [min(construcao), max(construcao)],
-            label = 'Construções (Mt)', values = construcao),
-            dict(range = [min(transporte), max(transporte)],
-            label = 'Transporte (Mt)', values = transporte)]
+            dict(
+                range = [min(industria), max(industria)],
+                label = 'Processos Industriais (Mt)', 
+                values = industria
+            ),
+            dict(
+                range = [min(calor_eletrici), max(calor_eletrici)],
+                label = 'Calor e Eletricidade (Mt)', 
+                values = calor_eletrici
+            ),
+            dict(
+                range = [min(construcao), max(construcao)],
+                label = 'Construções (Mt)', 
+                values = construcao
+            ),
+            dict(
+                range = [min(transporte), max(transporte)],
+                label = 'Transporte (Mt)', 
+                values = transporte
+            )]
             )
 )
 
@@ -115,7 +127,10 @@ graf_pizza.update_traces(
     textfont_size = 15,
     marker = dict(
         colors = colors,
-        line = dict(color = '#4169E1', width = 2)
+        line = dict(
+            color = '#4169E1', 
+            width = 2
+            )
         )
     )
 
@@ -171,10 +186,30 @@ for i in dados_linha_array:
     Agricultura.append(i[3])
     Solo.append(i[4])
 
-trace1 = go.Scatter(x = Ano, y = Energia, mode = 'lines+markers', name = 'Energia')
-trace2 = go.Scatter(x = Ano, y = Pi, mode = 'lines+markers', name = 'Processos Industriais')
-trace3 = go.Scatter(x = Ano, y = Agricultura, mode = 'lines+markers', name = 'Agricultura')
-trace4 = go.Scatter(x = Ano, y = Solo, mode = 'lines+markers', name = 'Solo e Silvicultura')
+trace1 = go.Scatter(
+    x = Ano, 
+    y = Energia, 
+    mode = 'lines+markers', 
+    name = 'Energia'
+)
+trace2 = go.Scatter(
+    x = Ano, 
+    y = Pi, 
+    mode = 'lines+markers', 
+    name = 'Processos Industriais'
+)
+trace3 = go.Scatter(
+    x = Ano, 
+    y = Agricultura, 
+    mode = 'lines+markers', 
+    name = 'Agricultura'
+)
+trace4 = go.Scatter(
+    x = Ano, 
+    y = Solo, 
+    mode = 'lines+markers', 
+    name = 'Solo e Silvicultura'
+)
 
 data = [trace1,trace2,trace3,trace4]
 
@@ -215,14 +250,54 @@ for i in dados_linha2_array:
     usa.append(i[7])
     world.append(i[8])
 
-linha1 = go.Scatter(x = ano, y = asia, mode = 'lines', name = 'Asia')
-linha2 = go.Scatter(x = ano, y = brasil, mode = 'lines', name = 'Brasil')
-linha3 = go.Scatter(x = ano, y = china, mode = 'lines', name = 'China')
-linha4 = go.Scatter(x = ano, y = europa, mode = 'lines', name = 'Europa')
-linha5 = go.Scatter(x = ano, y = alemanha, mode = 'lines', name = 'Alemanha')
-linha6 = go.Scatter(x = ano, y = americsul, mode = 'lines', name = 'America do Sul')
-linha7 = go.Scatter(x = ano, y = usa, mode = 'lines', name = 'Estados Unidos')
-linha8 = go.Scatter(x = ano, y = world, mode = 'lines', name = 'Mundo')
+linha1 = go.Scatter(
+    x = ano, 
+    y = asia, 
+    mode = 'lines', 
+    name = 'Asia'
+)
+linha2 = go.Scatter(
+    x = ano, 
+    y = brasil, 
+    mode = 'lines', 
+    name = 'Brasil'
+)
+linha3 = go.Scatter(
+    x = ano, 
+    y = china, 
+    mode = 'lines', 
+    name = 'China'
+)
+linha4 = go.Scatter(
+    x = ano, 
+    y = europa, 
+    mode = 'lines', 
+    name = 'Europa'
+)
+linha5 = go.Scatter(
+    x = ano, 
+    y = alemanha, 
+    mode = 'lines', 
+    name = 'Alemanha'
+)
+linha6 = go.Scatter(
+    x = ano, 
+    y = americsul, 
+    mode = 'lines', 
+    name = 'America do Sul'
+)
+linha7 = go.Scatter(
+    x = ano, 
+    y = usa, 
+    mode = 'lines', 
+    name = 'Estados Unidos'
+)
+linha8 = go.Scatter(
+    x = ano, 
+    y = world, 
+    mode = 'lines', 
+    name = 'Mundo'
+)
 
 imagem = [linha1, linha2, linha3, linha4, linha5, linha6, linha7, linha8]
 
@@ -233,8 +308,12 @@ graflinha2.update_layout(
     template = 'plotly_dark',
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor='rgba(0,0,0,0)',
-    xaxis = dict(title = "Anos"),
-    yaxis = dict(title = 'Concentração de CO2')
+    xaxis = dict(
+        title = "Anos"
+    ),
+    yaxis = dict(
+    title = 'Concentração de CO2'
+    )
 )  
 
 
@@ -347,8 +426,7 @@ markdown_linha = '''
 
 markdown_creditos = '''
             ***  
-            Aline Melo (), Eduardo Pereira (19/0026987), Fause Carlos (), Felipe Figueiredo (), Isaac Lucas (), 
-            Laiza Daniele (), Leandro de Souza (), Maykon Junio ()  
+            Fause (21/1031691), Laiza Daniele (21/1030611), Aline (21/1031557), Maykon (21/1030863), Felipe (21/1031000), Leandro (21/1031109), Isaac (21/1031735), Eduardo (19/0026987)   
             Algoritmos e Programação de Computadores - 01/2021  
             Grupo 12
             '''
@@ -358,7 +436,10 @@ external_stylesheets = [
     'https://bootswatch.com/4/darkly/bootstrap.css',
 ]
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(
+    __name__, 
+    external_stylesheets=external_stylesheets
+)
 app.layout = html.Div(children=[
     html.Div(children=[
         html.Div([
@@ -761,11 +842,19 @@ style={
 
 # Aqui vem o callback:
 @app.callback(
-    dash.Output('linhaplus', 'figure'),
-    dash.Input('Processo', 'value')
+    dash.Output(
+        'linhaplus', 
+        'figure'
+    ),
+    dash.Input(
+        'Processo', 
+        'value'
+    )
 )
+
 # Definindo o processo de criação e alteração do gfráfico de acordo com as escolhas do drop-down:
 def update_graf_linhaplus(num):
+
     # Essas listas serão repassadas como argumento para cada linha (setor) do gráfico.
     argAf = []
     argAs = []
@@ -773,6 +862,7 @@ def update_graf_linhaplus(num):
     argNA = []
     argOc = []
     argSA = []
+
     # As listas são preenchidas de acordo com a escolha do drop-down:
     if num == 1:
         argAf = oleoAf
@@ -810,14 +900,52 @@ def update_graf_linhaplus(num):
         argOc = gasOc
         argSA = gasSA
 
-    linha1 = go.Scatter(x = anos, y = argAf, mode = 'lines', name = 'Africa')
-    linha2 = go.Scatter(x = anos, y = argAs, mode = 'lines', name = 'Asia')
-    linha3 = go.Scatter(x = anos, y = argEuro, mode = 'lines', name = 'Europa')
-    linha4 = go.Scatter(x = anos, y = argNA, mode = 'lines', name = 'América do Norte')
-    linha5 = go.Scatter(x = anos, y = argOc, mode = 'lines', name = 'Oceania')
-    linha6 = go.Scatter(x = anos, y = argSA, mode = 'lines', name = 'América do Sul')
+    linha1 = go.Scatter(
+        x = anos, 
+        y = argAf, 
+        mode = 'lines', 
+        name = 'Africa'
+    )
+    linha2 = go.Scatter(
+        x = anos,
+        y = argAs,
+        mode = 'lines', 
+        name = 'Asia'
+    )
+    linha3 = go.Scatter(
+        x = anos, 
+        y = argEuro, 
+        mode = 'lines', 
+        name = 'Europa'
+    )
+    linha4 = go.Scatter(
+        x = anos, 
+        y = argNA, 
+        mode = 'lines', 
+        name = 'América do Norte'
+    )
+    linha5 = go.Scatter(
+        x = anos, 
+        y = argOc, 
+        mode = 'lines', 
+        name = 'Oceania'
+    )
+    linha6 = go.Scatter(
+        x = anos, 
+        y = argSA, 
+        mode = 'lines', 
+        name = 'América do Sul'
+    )
 
-    imagem = [linha1, linha2, linha3, linha4, linha5, linha6]
+    imagem = [
+        linha1, 
+        linha2, 
+        linha3, 
+        linha4, 
+        linha5, 
+        linha6
+    ]
+
     graf = go.Figure(imagem)
     graf.update_layout(
         template = 'plotly_dark',
