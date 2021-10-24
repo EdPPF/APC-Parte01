@@ -402,7 +402,7 @@ markdown_H1 = '''
             '''
 
 markdown_paralel = '''
-            O gráfico de Coordenadas paralelas pemrite comparar variáveis de dimensões diferentes ao mesmo tempo, por meio das colunas presentes na figura. Este gráfico mostra como foram as emissões de CO2 no Brasil nos setores presentes na imagem. - Base de dados disponível em [ghg-emissions 1.1.csv](https://github.com/EdPPF/APC-Parte01/blob/main/ghg-emissions%201.1.csv).
+            O gráfico de Coordenadas paralelas permite comparar variáveis de dimensões diferentes ao mesmo tempo, por meio das colunas presentes na figura. Este gráfico mostra como foram as emissões de CO2 no Brasil nos setores presentes na imagem. - Base de dados disponível em [ghg-emissions 1.1.csv](https://github.com/EdPPF/APC-Parte01/blob/main/ghg-emissions%201.1.csv).
             '''
 
 markdown_pizza = '''
