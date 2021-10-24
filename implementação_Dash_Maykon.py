@@ -431,7 +431,7 @@ markdown_creditos = '''
             Grupo 12
             '''
 
-# Titulo
+# Estilo importado
 external_stylesheets = [
     'https://bootswatch.com/4/darkly/bootstrap.css',
 ]
@@ -440,35 +440,42 @@ app = dash.Dash(
     __name__, 
     external_stylesheets=external_stylesheets
 )
+
 app.layout = html.Div(children=[
+
+    # Div titulo
     html.Div(children=[
-        html.Div([
-            html.H1(
-                children='Avaliação das Emissões e Concentrações de CO2',
-                style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
-                }
-            ),
-            dcc.Markdown(
-                children=markdown_H1,
-                style={
-                    'text-indent': '70px',
-                    'text-align': 'justify',
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                }
-            ),
-        ]),
+            
+        # Titulo
+        html.H1(
+            children='Avaliação das Emissões e Concentrações de CO2',
+            style={
+                'color':'#fff', 
+                'font-size':'25px',
+                'box-shadow': '0px 0px 5px #363636',
+                'padding': '10px 20px',
+                'width':'max-content',
+                'background-color' : '#616161',
+                'border-radius': '10px',
+                'margin': '30px',
+                'margin-left': '5%',
+            }
+        ),
+
+        # Subtitulo
+        dcc.Markdown(
+            children=markdown_H1,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
     ],
+
+    # Estilo DIV titulo
     style={  
         'color': '#fff',
         'background-color': '#3c4043',
@@ -478,53 +485,58 @@ app.layout = html.Div(children=[
         'width': '80%',
         'margin': 'auto',
         'margin-top': '7px',
-        
-    } #Estilo DIV titulo
+    }
     ), 
 
 # Grafico 1
 
     html.Div(children=[
-        html.Div([
-            html.H1(
-                children='Emissões de Setores Específicos no Brasil (1990-2018)',
-                style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
-                    
-                }
-            ),
-            dcc.Markdown(
-                children=markdown_paralel,
-                style={
-                    'text-indent': '70px',
-                    'text-align': 'justify',
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                }
-            ),
-            dcc.Graph(
-                figure=graf_paralel,
-                style={
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                },
-                config={
-                    'displayModeBar': False,
-                    'displaylogo': False,
-                }
-            )
-        ]),
+
+        # Titulo grafico 1
+        html.H1(
+            children='Emissões de Setores Específicos no Brasil (1990-2018)',
+            style={
+                'color':'#fff', 
+                'font-size':'25px',
+                'box-shadow': '0px 0px 5px #363636',
+                'padding': '10px 20px',
+                'width':'max-content',
+                'background-color' : '#616161',
+                'border-radius': '10px',
+                'margin': '30px',
+                'margin-left': '5%',
+                
+            }
+        ),
+
+        # Subtitulo grafico 1
+        dcc.Markdown(
+            children=markdown_paralel,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
+
+        # Grafico 1
+        dcc.Graph(
+            figure=graf_paralel,
+            style={
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            },
+            config={
+                'displayModeBar': False,
+                'displaylogo': False,
+            }
+        )
     ],
+
+    # Estilo DIV grafico 1
     style={
         'color': '#fff',
         'background-color': '#3c4043',
@@ -534,310 +546,357 @@ app.layout = html.Div(children=[
         'width': '80%',
         'margin': 'auto',
         'margin-top': '7px',
-
-    } #Estilo paralelo DIV
+    }
     ),
 
         # Grafico 2
 
-        html.Div(children=[
-            html.Div([  # Bloco para o título e o primeiro markdown.
-                html.H1(
-                    children='Emissões de CO2 em Setores de Combustíveis (1990-2018)',
-                    style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
-                    }
-                ),
-                dcc.Markdown(
-                    # children=markdown_pizza,
-                    style={
-                    'text-indent': '70px',
-                    'text-align': 'justify',
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                    }
-                ),
-            ]),
+    html.Div(children=[
 
-            html.Div([  # Bloco para o gráfico. Está separado pois é necessário adicionar 'display' em style.
-                dcc.Graph(
-                    figure=graf_pizza,
-                    style={
-                        'font-size':'20px',
-                        'width' : '90%',
-                        'margin': 'auto',
-                    },
-                    config={
-                        'displayModeBar': False
-                    }
-                ),
-            ],
-                style={}
-            ),
-
-            html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
-                dcc.Markdown(
-                    children=submarkdown_pizza,
-                    style={
-                        'text-indent': '70px',
-                        'text-align': 'justify',
-                        'font-size':'20px',
-                        'width' : '90%',
-                        'margin': 'auto',
-                    }
-                )
-            ],
-            ),
-            ], style={
-                'color': '#fff',
-                'background-color': '#3c4043',
-                'padding': '10px 10px',
-                'border-radius': '10px',
-                'box-shadow': '0px 0px 5px #1C1C1C',
-                'width': '80%',
-                'margin': 'auto',
-                'margin-top': '7px',
-            }
-        ),
-            html.Div(children=[
-            html.Div([  # Bloco para o dropdown, Gráfico extra e texto desse gráfico.
-                html.H1(
-                    children='titulo',
-                    style={
-                        'color':'#fff', 
-                        'font-size':'25px',
-                        'box-shadow': '0px 0px 5px #363636',
-                        'padding': '10px 20px',
-                        'width':'max-content',
-                        'background-color' : '#616161',
-                        'border-radius': '10px',
-                        'margin': '30px',
-                        'margin-left': '5%',
-                    }
-                ),
-                dcc.Dropdown(
-                    id='Processo',
-                    #options=[{'label': ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'], 'value': [1, 2, 3, 4, 5]}],
-                    options=[{'label': nome, 'value': num} for num, nome in zip([1,2,3,4,5], ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'])],
-                    value=1,
-                    style={
-                        'color':'#00bc8c',
-                        'width' : '90%',
-                        'margin': 'auto',
-                        'background-color': '#616161',
-                        'border': 'none',
-                        'border-radius': '10px',
-
-                    }
-                ),
-                dcc.Graph(id='linhaplus',
+        html.Div([  # Bloco para o título e o primeiro markdown.
+            
+            # Titulo grafico 2
+            html.H1(
+                children='Emissões de CO2 em Setores de Combustíveis (1990-2018)',
                 style={
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                },
-                config={
-                    'displayModeBar': False
+                'color':'#fff', 
+                'font-size':'25px',
+                'box-shadow': '0px 0px 5px #363636',
+                'padding': '10px 20px',
+                'width':'max-content',
+                'background-color' : '#616161',
+                'border-radius': '10px',
+                'margin': '30px',
+                'margin-left': '5%',
                 }
-                )
-            ])
-            ], 
+            ),
+
+            # Subtitulo grafico 2
+            dcc.Markdown(
+
+                # children=markdown_pizza,
+                style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+                }
+            ),
+        ]),
+
+        # Grafico 2
+
+        # Bloco para o gráfico. Está separado pois é necessário adicionar 'display' em style.
+        dcc.Graph(
+            figure=graf_pizza,
             style={
-                'color': '#fff',
-                'background-color': '#3c4043',
-                'padding': '10px 10px',
-                'border-radius': '10px',
-                'box-shadow': '0px 0px 5px #1C1C1C',
-                'width': '80%',
+                'font-size':'20px',
+                'width' : '90%',
                 'margin': 'auto',
-                'margin-top': '7px',
+            },
+            config={
+                'displayModeBar': False
             }
         ),
 
-
-        html.Div(children=[
-            html.H1(
-                children='Concentração de CO2 (1990-2018, Regiões Específicas e Mundo)',
-                style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
+    html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
+        dcc.Markdown(
+            children=submarkdown_pizza,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
             }
-            ),
-            dcc.Markdown(
-                children=markdown_linha2,
-                style={
-                    'text-indent': '70px',
-                    'text-align': 'justify',
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                }
-            ),
-            dcc.Graph(figure=graflinha2,
-                style={
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                },
-                config={
-                    'displayModeBar': False
-                }
-            )
-        ],
-        style={
-            'color': '#fff',
-            'background-color': '#3c4043',
-            'padding': '10px 10px',
-            'border-radius': '10px',
-            'box-shadow': '0px 0px 5px #1C1C1C',
-            'width': '80%',
-            'margin': 'auto',
-            'margin-top': '7px',
-        }
-        ),
-
-        html.Div(children=[
-            html.H1(
-                children='Concentração de CO2 Per Capita (1991-2018, Brasil e Mundo)',
-                style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
-                }
-            ),
-            dcc.Markdown(
-                children=markdown_barra,
-                style={
-                    'text-indent': '70px',
-                    'text-align': 'justify',
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                }
-            ),
-            dcc.Graph(
-                figure=graf_barra,
-                style={
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                },
-                config={
-                    'displayModeBar': False
-                }
-            )
-        ],
-        style={
-            'color': '#fff',
-            'background-color': '#3c4043',
-            'padding': '10px 10px',
-            'border-radius': '10px',
-            'box-shadow': '0px 0px 5px #1C1C1C',
-            'width': '80%',
-            'margin': 'auto',
-            'margin-top': '7px',
-        }
-        ),
-
-        html.Div(children=[
-            html.H1(
-                children='Variação da Emissão de CO2 em Setores (1990-2018, Brasil)',
-                style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
-                }
-            ),
-            dcc.Markdown(
-                children=markdown_linha,
-                style={
-                    'text-indent': '70px',
-                    'text-align': 'justify',
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                }
-            ),
-            dcc.Graph(
-                figure=graflinha,
-                style={
-                    'font-size':'20px',
-                    'width' : '90%',
-                    'margin': 'auto',
-                },
-                config={
-                    'displayModeBar': False
-                }
-            )
-        ],
-        style={
-            'color': '#fff',
-            'background-color': '#3c4043',
-            'padding': '10px 10px',
-            'border-radius': '10px',
-            'box-shadow': '0px 0px 5px #1C1C1C',
-            'width': '80%',
-            'margin': 'auto',
-            'margin-top': '7px',
-        }
-        ),
-
-        html.Div(children=[
-            dcc.Markdown(
-                children=markdown_creditos,
-                style={
-                    'font-size':'15px', 
-                    'color':'#00bc8c', 
-                    'text-align':'center',
-                    'width' : '90%',
-                    'margin': 'auto',
-                    }
-            ),
-        ],
-        style={
-            'color': '#fff',
-            'background-color': '#3c4043',
-            'padding': '10px 10px',
-            'margin-top': '7px',
-            'box-shadow': '0px 0px 5px #1C1C1C',
+        )
+    ],
+    ),
+    ], 
+    style={
+        'color': '#fff',
+        'background-color': '#3c4043',
+        'padding': '10px 10px',
+        'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
+        'margin-top': '7px',
     }
+    
+    ),
+
+    # Grafico 3
+    html.Div(children=[
+        html.Div([  # Bloco para o dropdown, Gráfico extra e texto desse gráfico.
+            
+            #Titulo Grafico 3
+            html.H1(
+                children='titulo',
+                style={
+                    'color':'#fff', 
+                    'font-size':'25px',
+                    'box-shadow': '0px 0px 5px #363636',
+                    'padding': '10px 20px',
+                    'width':'max-content',
+                    'background-color' : '#616161',
+                    'border-radius': '10px',
+                    'margin': '30px',
+                    'margin-left': '5%',
+                }
+            ),
+
+            # Subtitulo Grafico 3
+            dcc.Dropdown(
+                id='Processo',
+                #options=[{'label': ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'], 'value': [1, 2, 3, 4, 5]}],
+                options=[{'label': nome, 'value': num} for num, nome in zip([1,2,3,4,5], ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'])],
+                value=1,
+                style={
+                    'color':'#00bc8c',
+                    'width' : '90%',
+                    'margin': 'auto',
+                    'background-color': '#616161',
+                    'border': 'none',
+                    'border-radius': '10px',
+
+                }
+            ),
+
+            # Grafico 3
+            dcc.Graph(id='linhaplus',
+            style={
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            },
+            config={
+                'displayModeBar': False
+            }
+            )
+        ])
+    ],
+
+    # Estilo DIV Grafico 3 
+    style={
+        'color': '#fff',
+        'background-color': '#3c4043',
+        'padding': '10px 10px',
+        'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
+        'margin-top': '7px',
+    }
+    ),
+
+    # Grafico 4
+    html.Div(children=[
+    
+        # Titulo grafico 4
+        html.H1(
+            children='Concentração de CO2 (1990-2018, Regiões Específicas e Mundo)',
+            style={
+                'color':'#fff', 
+                'font-size':'25px',
+                'box-shadow': '0px 0px 5px #363636',
+                'padding': '10px 20px',
+                'width':'max-content',
+                'background-color' : '#616161',
+                'border-radius': '10px',
+                'margin': '30px',
+                'margin-left': '5%',
+        }
         ),
+
+        # Subtitulo grafico 4
+        dcc.Markdown(
+            children=markdown_linha2,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
+
+        # Grafico 4
+        dcc.Graph(figure=graflinha2,
+            style={
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            },
+            config={
+                'displayModeBar': False
+            }
+        )
+    ],
+
+    # Estilo DIV grafico 4
+    style={
+        'color': '#fff',
+        'background-color': '#3c4043',
+        'padding': '10px 10px',
+        'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
+        'margin-top': '7px',
+    }
+    ),
+
+    # Grafico 5
+    html.Div(children=[
+
+        # Titulo grafico 5
+        html.H1(
+            children='Concentração de CO2 Per Capita (1991-2018, Brasil e Mundo)',
+            style={
+                'color':'#fff', 
+                'font-size':'25px',
+                'box-shadow': '0px 0px 5px #363636',
+                'padding': '10px 20px',
+                'width':'max-content',
+                'background-color' : '#616161',
+                'border-radius': '10px',
+                'margin': '30px',
+                'margin-left': '5%',
+            }
+        ),
+
+        # Subtitulo grafico 5
+        dcc.Markdown(
+            children=markdown_barra,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
+
+        # Grafico 5
+        dcc.Graph(
+            figure=graf_barra,
+            style={
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            },
+            config={
+                'displayModeBar': False
+            }
+        )
+    ],
+
+    # Estilo Grafico 5
+    style={
+        'color': '#fff',
+        'background-color': '#3c4043',
+        'padding': '10px 10px',
+        'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
+        'margin-top': '7px',
+    }
+    ),
+
+    # Grafico 6
+    html.Div(children=[
+
+        # Titulo grafico 6
+        html.H1(
+            children='Variação da Emissão de CO2 em Setores (1990-2018, Brasil)',
+            style={
+                'color':'#fff', 
+                'font-size':'25px',
+                'box-shadow': '0px 0px 5px #363636',
+                'padding': '10px 20px',
+                'width':'max-content',
+                'background-color' : '#616161',
+                'border-radius': '10px',
+                'margin': '30px',
+                'margin-left': '5%',
+            }
+        ),
+
+        # Subtitulo Grafico 6
+        dcc.Markdown(
+            children=markdown_linha,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
+
+        # Grafico 6
+        dcc.Graph(
+            figure=graflinha,
+            style={
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            },
+            config={
+                'displayModeBar': False
+            }
+        )
+    ],
+
+    # Estilo DIV grafico 6
+    style={
+        'color': '#fff',
+        'background-color': '#3c4043',
+        'padding': '10px 10px',
+        'border-radius': '10px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+        'width': '80%',
+        'margin': 'auto',
+        'margin-top': '7px',
+    }
+    ),
+
+    # Creditos rodape
+    html.Div(children=[
+        dcc.Markdown(
+            children=markdown_creditos,
+            style={
+                'font-size':'15px', 
+                'color':'#00bc8c', 
+                'text-align':'center',
+                'width' : '90%',
+                'margin': 'auto',
+                }
+        ),
+    ],
+
+    # Estilo creditos rodape
+    style={
+        'color': '#fff',
+        'background-color': '#3c4043',
+        'padding': '10px 10px',
+        'margin-top': '7px',
+        'box-shadow': '0px 0px 5px #1C1C1C',
+    }
+    ),
 ],
+
+# Estilo DIV principal
 style={
     'width': '100v%',
     'height': '100%',
     'margin': '0px', 
     'margin': 'auto',
     'background-color': '#212121',
-}, #Estilo DIV main
+},
 )
 
 # Aqui vem o callback:
