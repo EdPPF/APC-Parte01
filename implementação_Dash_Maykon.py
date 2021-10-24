@@ -511,10 +511,6 @@ app.layout = html.Div(children=[
                     }
                 )
             ],
-                style={
-                    'width' : '90%',
-                    'margin': 'auto',
-                }
             ),
             ], style={
                 'color': '#fff',
