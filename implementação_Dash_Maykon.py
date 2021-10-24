@@ -554,6 +554,7 @@ app.layout = html.Div(children=[
                         'margin': 'auto',
                         'background-color': '#616161',
                         'border': 'none',
+                        'border-radius': '10px',
                     }
                 ),
                 dcc.Graph(id='linhaplus',
