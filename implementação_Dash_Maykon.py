@@ -1,9 +1,5 @@
-from dash.dcc import Graph
-from dash.resources import Css
 import plotly.graph_objects as go
 import pandas as pd
-import dash_html_components as html
-import dash as dbc
     
 # Lendo as bases de dados:
 dados_paralel = pd.read_csv('https://raw.githubusercontent.com/EdPPF/APC-Parte01/main/ghg-emissions%201.1.csv')
@@ -18,6 +14,7 @@ dados_pizza_array = dados_pizza.values
 dados_barra_array = dados_barra.values
 dados_linha_array = dados_linha.values
 dados_linha2_array = dados_linha2.values
+
 # print(dados_barra_array)
 
 # ----------COORDENADAS PARALELAS----------
@@ -64,11 +61,12 @@ paralel = go.Parcoords(
             )
 )
 
-
 # Criando a imagem do gráfico plotado:
 graf_paralel = go.Figure(paralel)
+
 # Modificando o lyout geral do gráfico (cor de fundo):
 graf_paralel.update_layout(
+    
     #title_text = 'Emissões de Setores Específicos no Brasil (1990-2018)',
     template = 'plotly_dark',
     paper_bgcolor="rgba(0,0,0,0)",
@@ -390,38 +388,36 @@ for lista in espgas:
     del gas[0:29]
 
 # Utilizando o dash de fato:
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
 
-css = ['https://bootswatch.com/4/darkly/bootstrap.css']
+import dash
+from dash import dcc
+from dash import html
 
 markdown_H1 = '''
-            O intuito desta página é analisar as emissões e concentrações de CO2 (gás carbônico) na atmosfera por meio de gráficos demonstrativos e comparativos. Os gráficos focam no período de tempo de 1990 a 2018 especialmente no Brasil, apesar de trazer dados referentes a outras regiões do mundo. Bases de dados e códigos disponíveis publicamente [neste repositório do GitHub](https://github.com/EdPPF/APC-Parte01).
+            O intuito desta página é analisar as emissões e concentrações de CO2 (gás carbônico) na atmosfera por meio de gráficos demonstrativos e comparativos. Os gráficos focam no período de tempo de 1990 a 2018 especialmente no Brasil, apesar de trazer dados referentes a outras regiões do mundo.  
             '''
 
 markdown_paralel = '''
-            O gráfico de Coordenadas paralelas permite comparar variáveis de dimensões diferentes ao mesmo tempo, por meio das colunas presentes na figura. Este gráfico mostra como foram as emissões de CO2 no Brasil nos setores presentes na imagem. - Base de dados disponível em [ghg-emissions 1.1.csv](https://github.com/EdPPF/APC-Parte01/blob/main/ghg-emissions%201.1.csv).
+            O gráfico de Coordenadas paralelas pemrite comparar variáveis de dimensões diferentes ao mesmo tempo, por meio das colunas presentes na figura. Este gráfico mostra como foram as emissões de CO2 no Brasil nos setores presentes na imagem.  
             '''
 
 markdown_pizza = '''
-            A proposta do próximo gráfico é comparar dados de emissões de CO2 referentes a várias regiões do mundo, de modo a calcular a média dessas regiões para cada setor específico. - Base de dados disponível em [co2-emissions-by-fuel-line_1 (2).csv](https://github.com/EdPPF/APC-Parte01/blob/main/co2-emissions-by-fuel-line_1%20(2).csv).
+            A proposta do próximo gráfico é comparar dados de emissões de CO2 referentes a várias regiões do mundo, de modo a calcular a média dessas regiões para cada setor específico.  
             '''
 submarkdown_pizza = '''
-            A base de dados para este gráfico é extensa, contendo dados referentes aos anos de 1750 até 2019, além de a vários países e regiões do mundo. Dessa forma, os dados foram filtrados para apresentar apenas valores Referentes a  Africa, Ásia, Europa, Oceania, América do Norte e América do Sul. Com esses dados, foi feita a média das emissões para cada setor presente no gráfico, de maneira a permitir uma rápida comparação de valores. Abaixo podem ser conferidos os dados referentes a cada país: ...ou será que podem?
+            A base de dados para este gráfico é extensa, contendo dados referentes aos anos de 1750 até 2019, além de a vários países e regiões do mundo. Dessa forma, os dados foram filtrados para apresentar apenas valores Referentes a  Africa, Ásia, Europa, Oceania, América do Norte e América do Sul. Com esses dados, foi feita a média das emissões para cada setor presente no gráfico, de maneira a permitir uma rápida comparação de valores. Para ser feita uma comparação mais direta entra as regiões utilizadas no gráfico acima, foi criado a figura abaixo, que permite selecionar um setor de combustível para que seja mostrada uma plotagem referente apenas ao setor selecionado para cada país. 
             '''
 
 markdown_linha2 = '''
-            De maneira similar ao anterior, o gráfico abaixo apresenta as emissões anuais de CO2 para as mesmas regiões, permitindo uma análise mais geral e precisa entre elas, não restrita a setores específicos. Também foi adicionada uma linha, "Mundo", referente a emissões globais de CO2. - Base de dados disponível em [annual-co2-emissions-per-country(4).csv](https://github.com/EdPPF/APC-Parte01/blob/main/annual-co2-emissions-per-country(4).csv).
+            De maneira similar ao anterior, o gráfico abaixo apresenta as emissões anuais de CO2 para as mesmas regiões, permitindo uma análise mais geral e precisa entre elas, não restrita a setores específicos. Também foi adicionada uma linha, "Mundo", referente a emissões globais de CO2.  
             '''
 
 markdown_barra = '''
-            Este gráfico compara as concentrações per capita de CO2 na atmosfera no Brasil e o total mundial. - Base de dados disponível em [Dados.csv](https://github.com/EdPPF/APC-Parte01/blob/main/Dados.csv).
+            Este gráfico compara as concentrações per capita de CO2 na atmosfera no Brasil e o total mundial.  
             '''
 
 markdown_linha = '''
-            Por fim, o gráfico a seguir demonstra como foi a variação percentual da emissão de CO2 nos setores apresentados, no Brasil. - Base de dados disponível em [co2_variacao_setores.csv](https://github.com/EdPPF/APC-Parte01/blob/main/co2_variacao_setores.csv).
+            Por fim, o gráfico a seguir demonstra como foi a variação percentual da emissão de CO2 nos setores apresentados, no Brasil.  
             '''
 
 markdown_creditos = '''
@@ -435,6 +431,7 @@ markdown_creditos = '''
 external_stylesheets = [
     'https://bootswatch.com/4/darkly/bootstrap.css',
 ]
+
 
 app = dash.Dash(
     __name__, 
@@ -451,14 +448,14 @@ app.layout = html.Div(children=[
             children='Avaliação das Emissões e Concentrações de CO2',
             style={
                 'color':'#fff', 
-                'font-size':'25px',
+                'font-size':'30px',
                 'box-shadow': '0px 0px 5px #363636',
                 'padding': '10px 20px',
                 'width':'max-content',
                 'background-color' : '#616161',
                 'border-radius': '10px',
-                'margin': '30px',
-                'margin-left': '5%',
+                'margin': '30px auto',
+                'font-weight': 'bold',
             }
         ),
 
@@ -471,6 +468,18 @@ app.layout = html.Div(children=[
                 'font-size':'20px',
                 'width' : '90%',
                 'margin': 'auto',
+                'text-decoration': 'none',
+            }
+        ),
+        dcc.Markdown(
+            children='Bases de dados e códigos disponíveis publicamente [neste repositório do GitHub](https://github.com/EdPPF/APC-Parte01).',
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+                'text-decoration': 'none',
             }
         ),
     ],
@@ -505,13 +514,22 @@ app.layout = html.Div(children=[
                 'border-radius': '10px',
                 'margin': '30px',
                 'margin-left': '5%',
-                
             }
         ),
 
         # Subtitulo grafico 1
         dcc.Markdown(
             children=markdown_paralel,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
+        dcc.Markdown(
+            children='Base de dados disponível em [ghg-emissions 1.1.csv](https://github.com/EdPPF/APC-Parte01/blob/main/ghg-emissions%201.1.csv).',
             style={
                 'text-indent': '70px',
                 'text-align': 'justify',
@@ -571,6 +589,34 @@ app.layout = html.Div(children=[
                 }
             ),
 
+            html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
+                dcc.Markdown(
+                    children=markdown_pizza,
+                    style={
+                        'text-indent': '70px',
+                        'text-align': 'justify',
+                        'font-size':'20px',
+                        'width' : '90%',
+                        'margin': 'auto',
+                    }
+                )
+            ],
+            ),
+            html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
+                dcc.Markdown(
+                    children='Base de dados disponível em [co2-emissions-by-fuel-line_1 (2).csv](https://github.com/EdPPF/APC-Parte01/blob/main/co2-emissions-by-fuel-line_1%20(2).csv).',
+                    style={
+                        'text-indent': '70px',
+                        'text-align': 'justify',
+                        'font-size':'20px',
+                        'width' : '90%',
+                        'margin': 'auto',
+                    }
+                )
+            ],
+            ),
+
+
             # Subtitulo grafico 2
             dcc.Markdown(
 
@@ -599,20 +645,8 @@ app.layout = html.Div(children=[
                 'displayModeBar': False
             }
         ),
+    
 
-    html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
-        dcc.Markdown(
-            children=submarkdown_pizza,
-            style={
-                'text-indent': '70px',
-                'text-align': 'justify',
-                'font-size':'20px',
-                'width' : '90%',
-                'margin': 'auto',
-            }
-        )
-    ],
-    ),
     ], 
     style={
         'color': '#fff',
@@ -632,20 +666,35 @@ app.layout = html.Div(children=[
         html.Div([  # Bloco para o dropdown, Gráfico extra e texto desse gráfico.
             
             #Titulo Grafico 3
-            html.H1(
-                children='titulo',
+            # html.H1(
+            #     children='titulo',
+            #     style={
+            #         'color':'#fff', 
+            #         'font-size':'25px',
+            #         'box-shadow': '0px 0px 5px #363636',
+            #         'padding': '10px 20px',
+            #         'width':'max-content',
+            #         'background-color' : '#616161',
+            #         'border-radius': '10px',
+            #         'margin': '30px',
+            #         'margin-left': '5%',
+            #     }
+            # ),
+            
+
+            html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
+            dcc.Markdown(
+                children=submarkdown_pizza,
                 style={
-                    'color':'#fff', 
-                    'font-size':'25px',
-                    'box-shadow': '0px 0px 5px #363636',
-                    'padding': '10px 20px',
-                    'width':'max-content',
-                    'background-color' : '#616161',
-                    'border-radius': '10px',
-                    'margin': '30px',
-                    'margin-left': '5%',
+                    'text-indent': '70px',
+                    'text-align': 'justify',
+                    'font-size':'20px',
+                    'width' : '90%',
+                    'margin': '30px auto',
                 }
-            ),
+            )
+            ],
+    ),  
 
             # Subtitulo Grafico 3
             dcc.Dropdown(
@@ -660,7 +709,6 @@ app.layout = html.Div(children=[
                     'background-color': '#616161',
                     'border': 'none',
                     'border-radius': '10px',
-
                 }
             ),
 
@@ -721,6 +769,16 @@ app.layout = html.Div(children=[
                 'margin': 'auto',
             }
         ),
+        dcc.Markdown(
+            children='Base de dados disponível em [annual-co2-emissions-per-country(4).csv](https://github.com/EdPPF/APC-Parte01/blob/main/annual-co2-emissions-per-country(4).csv).',
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
 
         # Grafico 4
         dcc.Graph(figure=graflinha2,
@@ -770,6 +828,16 @@ app.layout = html.Div(children=[
         # Subtitulo grafico 5
         dcc.Markdown(
             children=markdown_barra,
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
+        dcc.Markdown(
+            children='Base de dados disponível em [Dados.csv](https://github.com/EdPPF/APC-Parte01/blob/main/Dados.csv).',
             style={
                 'text-indent': '70px',
                 'text-align': 'justify',
@@ -836,6 +904,16 @@ app.layout = html.Div(children=[
                 'margin': 'auto',
             }
         ),
+        dcc.Markdown(
+            children='Base de dados disponível em [co2_variacao_setores.csv](https://github.com/EdPPF/APC-Parte01/blob/main/co2_variacao_setores.csv).',
+            style={
+                'text-indent': '70px',
+                'text-align': 'justify',
+                'font-size':'20px',
+                'width' : '90%',
+                'margin': 'auto',
+            }
+        ),
 
         # Grafico 6
         dcc.Graph(
@@ -874,7 +952,7 @@ app.layout = html.Div(children=[
                 'text-align':'center',
                 'width' : '90%',
                 'margin': 'auto',
-                }
+            }
         ),
     ],
 
@@ -1009,7 +1087,7 @@ def update_graf_linhaplus(num):
     graf.update_layout(
         template = 'plotly_dark',
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor='rgba(0,0,0,0)'
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     return graf
