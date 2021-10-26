@@ -664,23 +664,6 @@ app.layout = html.Div(children=[
     # Grafico 3
     html.Div(children=[
         html.Div([  # Bloco para o dropdown, Gráfico extra e texto desse gráfico.
-            
-            #Titulo Grafico 3
-            # html.H1(
-            #     children='titulo',
-            #     style={
-            #         'color':'#fff', 
-            #         'font-size':'25px',
-            #         'box-shadow': '0px 0px 5px #363636',
-            #         'padding': '10px 20px',
-            #         'width':'max-content',
-            #         'background-color' : '#616161',
-            #         'border-radius': '10px',
-            #         'margin': '30px',
-            #         'margin-left': '5%',
-            #     }
-            # ),
-            
 
             html.Div([  # Bloco para o segundo markdown. Está separado pois é necessário adicionar 'display' em style.
             dcc.Markdown(
@@ -699,7 +682,6 @@ app.layout = html.Div(children=[
             # Subtitulo Grafico 3
             dcc.Dropdown(
                 id='Processo',
-                #options=[{'label': ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'], 'value': [1, 2, 3, 4, 5]}],
                 options=[{'label': nome, 'value': num} for num, nome in zip([1,2,3,4,5], ['Óleo', 'Queimada', 'Cimento', 'Carvao', 'Gas'])],
                 value=1,
                 style={
